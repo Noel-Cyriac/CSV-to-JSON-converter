@@ -1,0 +1,50 @@
+INFO Application Started
+INFO Found 3 CSV files
+INFO Processing products.csv
+INFO products.csv converted successfully
+INFO Processing users.csv
+INFO users.csv converted successfully
+INFO Processing invalid.csv
+SEVERE invalid.csv failed - Malformed row at record 2: Column count (2) does not match header count (3).
+INFO Application Finished
+INFO Application Started
+INFO Found 0 CSV files
+INFO Application Finished
+INFO Application Started
+INFO Found 1 CSV files
+INFO Skipping users.csv (already successfully processed or permanently failed)
+INFO Application Finished
+INFO Retry execution started
+INFO Found 1 failed CSV files for retry
+INFO Retrying invalid.csv (attempt 2 of 3)
+SEVERE invalid.csv failed on retry attempt 2
+INFO Application Finished
+INFO Retry execution started
+INFO Found 1 failed CSV files for retry
+INFO Retrying invalid.csv (attempt 3 of 3)
+SEVERE invalid.csv failed permanently after 3 attempts
+SEVERE invalid.csv marked as PERMANENT_FAILURE
+INFO Application Finished
+INFO Retry execution started
+INFO Found 1 failed CSV files for retry
+INFO Skipping invalid.csv because status is PERMANENT_FAILURE
+INFO Application Finished
+INFO Application Started
+INFO Found 1 CSV files
+INFO Processing another_invalid.csv
+SEVERE another_invalid.csv failed - Malformed row at record 2: Column count (2) does not match header count (3).
+INFO Application Finished
+INFO Retry execution started
+INFO Found 2 failed CSV files for retry
+INFO Skipping invalid.csv because status is PERMANENT_FAILURE
+INFO Retrying another_invalid.csv (attempt 2 of 3)
+INFO another_invalid.csv converted successfully on retry
+INFO Application Finished
+INFO Application Started
+INFO Found 0 CSV files
+INFO Application Finished
+INFO Application Started
+INFO Found 1 CSV files
+INFO Processing Company_Sales_and_Performance_Data.csv
+INFO Company_Sales_and_Performance_Data.csv converted successfully
+INFO Application Finished

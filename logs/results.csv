@@ -1,0 +1,9 @@
+filename,status,message,timestamp
+products.csv,SUCCESS,Converted successfully,2026-06-25T10:23:13.431023606
+users.csv,SUCCESS,Converted successfully,2026-06-25T10:23:13.433768392
+invalid.csv,FAILED,Malformed row at record 2: Column count (2) does not match header count (3).,2026-06-25T10:23:13.445700427
+invalid.csv,FAILED,Failed on retry: Malformed row at record 2: Column count (2) does not match header count (3).,2026-06-25T10:23:58.957471565
+invalid.csv,PERMANENT_FAILURE,Failed permanently: Malformed row at record 2: Column count (2) does not match header count (3).,2026-06-25T10:24:12.924879467
+another_invalid.csv,FAILED,Malformed row at record 2: Column count (2) does not match header count (3).,2026-06-25T10:24:41.880714424
+another_invalid.csv,SUCCESS,Converted successfully on retry (attempt 2),2026-06-25T10:25:18.868393906
+Company_Sales_and_Performance_Data.csv,SUCCESS,Converted successfully,2026-06-25T16:45:32.836073414

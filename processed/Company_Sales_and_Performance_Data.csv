@@ -1,0 +1,11 @@
+Transaction_ID,Date,Customer_Region,Product_Category,Product_Name,Units_Sold,Unit_Price,Discount,Total_Revenue,Payment_Method,Order_Status
+TXN-1001,2026-01-15,North America,Electronics,Wireless Headphones,15,89.99,0.05,1282.36,Credit Card,Shipped
+TXN-1002,2026-01-15,Europe,Furniture,Ergonomic Office Chair,4,249.99,0.1,899.96,Bank Transfer,Shipped
+TXN-1003,2026-01-16,Asia-Pacific,Electronics,Smart Watch v2,8,199.5,0.0,1596.0,PayPal,Delivered
+TXN-1004,2026-01-16,North America,Apparel,Weatherproof Jacket,22,120.0,0.15,2244.0,Credit Card,Delivered
+TXN-1005,2026-01-17,Latin America,Electronics,Bluetooth Speaker,12,45.0,0.0,540.0,Credit Card,Shipped
+TXN-1006,2026-01-17,Europe,Apparel,Running Shoes,30,85.0,0.1,2295.0,Debit Card,Processing
+TXN-1007,2026-01-18,Asia-Pacific,Furniture,Standing Desk,3,450.0,0.05,1282.5,Bank Transfer,Delivered
+TXN-1008,2026-01-19,North America,Electronics,"UltraWide Monitor 34""",5,399.99,0.0,1999.95,Credit Card,Shipped
+TXN-1009,2026-01-19,Europe,Electronics,Wireless Headphones,10,89.99,0.0,899.9,PayPal,Delivered
+TXN-1010,2026-01-20,Middle East,Apparel,Weatherproof Jacket,7,120.0,0.05,798.0,Credit Card,Processing

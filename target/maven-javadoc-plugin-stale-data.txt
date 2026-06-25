@@ -1,0 +1,63 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+-classpath
+'/home/noelcyriac/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.1/jackson-databind-2.17.1.jar:/home/noelcyriac/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.1/jackson-annotations-2.17.1.jar:/home/noelcyriac/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.1/jackson-core-2.17.1.jar:/home/noelcyriac/.m2/repository/org/apache/commons/commons-csv/1.11.0/commons-csv-1.11.0.jar:/home/noelcyriac/.m2/repository/commons-io/commons-io/2.16.1/commons-io-2.16.1.jar:/home/noelcyriac/.m2/repository/commons-codec/commons-codec/1.16.1/commons-codec-1.16.1.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'21'
+-sourcepath
+'/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2026. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'CSV to JSON Converter 1.0.0 API'
+-use
+-version
+-windowtitle
+'CSV to JSON Converter 1.0.0 API'
+com.example.csvjson.util
+com.example.csvjson.service
+com.example.csvjson.model
+com.example.csvjson
+com.example.csvjson.config
+com.example.csvjson.processor
+/home/noelcyriac/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.1/jackson-databind-2.17.1.jar = 1714874874000
+/home/noelcyriac/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.1/jackson-annotations-2.17.1.jar = 1714873467000
+/home/noelcyriac/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.1/jackson-core-2.17.1.jar = 1714874075000
+/home/noelcyriac/.m2/repository/org/apache/commons/commons-csv/1.11.0/commons-csv-1.11.0.jar = 1714342164000
+/home/noelcyriac/.m2/repository/commons-io/commons-io/2.16.1/commons-io-2.16.1.jar = 1774435921206
+/home/noelcyriac/.m2/repository/commons-codec/commons-codec/1.16.1/commons-codec-1.16.1.jar = 1774435921411
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/src/main/java = 1782362954309
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/package-search-index.js = 1782385135842
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/constant-values.html = 1782385135698
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/search-page.js = 1782385135903
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/type-search-index.js = 1782385135842
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/member-search-index.js = 1782385135842
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/module-search-index.js = 1782385135841
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/overview-summary.html = 1782385135887
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/script.js = 1782385135898
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/element-list = 1782385135633
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/stylesheet.css = 1782385135896
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/help-doc.html = 1782385135894
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/link.svg = 1782385135898
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/index.html = 1782385135813
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/tag-search-index.js = 1782385135843
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/search.js = 1782385135901
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/overview-tree.html = 1782385135808
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/allclasses-index.html = 1782385135838
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/copy.svg = 1782385135898
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/index-all.html = 1782385135881
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/search.html = 1782385135884
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/serialized-form.html = 1782385135711
+/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/reports/apidocs/allpackages-index.html = 1782385135840
