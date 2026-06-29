@@ -7,3 +7,6 @@ invalid.csv,PERMANENT_FAILURE,Failed permanently: Malformed row at record 2: Col
 another_invalid.csv,FAILED,Malformed row at record 2: Column count (2) does not match header count (3).,2026-06-25T10:24:41.880714424
 another_invalid.csv,SUCCESS,Converted successfully on retry (attempt 2),2026-06-25T10:25:18.868393906
 Company_Sales_and_Performance_Data.csv,SUCCESS,Converted successfully,2026-06-25T16:45:32.836073414
+invalid1.csv,FAILED,Malformed row at record 2: Column count (2) does not match header count (3).,2026-06-29T13:55:19.59488274
+invalid1.csv,FAILED,Failed on retry: Malformed row at record 2: Column count (2) does not match header count (3).,2026-06-29T13:56:23.692554041
+invalid1.csv,SUCCESS,Converted successfully on retry (attempt 3),2026-06-29T13:57:57.003155021
