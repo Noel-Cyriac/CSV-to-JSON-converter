@@ -1,6 +1,6 @@
 # CSV to JSON Converter
 
-A production-style standalone Java application built on Java 21 and Maven. It scans a directory for CSV files, converts them into pretty-printed JSON files, prevents duplicate processing using a metadata ledger, maintains execution and results logs, and supports manual or scheduled retries with a maximum retry limit.
+A production-style standalone Java application built on Java 21 and Maven. It scans a directory for CSV files, converts them into pretty-printed JSON files (with automatic data type inference), prevents duplicate processing using a metadata ledger, maintains execution and results logs, and supports manual or scheduled retries with a maximum retry limit.
 
 ---
 
@@ -35,7 +35,7 @@ CSV-to-JSON-converter/
 ---
 
 ## Configurations (`config/application.properties`)
-You can configure folder directories relative to the execution root, as well as the maximum retry limit:
+You can configure folder directories relative to the execution root, the maximum retry limit, and processing behavior:
 ```properties
 dir.input=input
 dir.output=output
@@ -44,6 +44,7 @@ dir.failed=failed
 dir.logs=logs
 dir.metadata=metadata
 max.retries=3
+json.infer.types=true
 ```
 
 ---
