@@ -39,7 +39,9 @@ public class CsvParserService {
         }
 
         List<Map<String, Object>> results = new ArrayList<>();
+        char delimiter = (config != null) ? config.getCsvDelimiter() : ',';
         CSVFormat csvFormat = CSVFormat.Builder.create(CSVFormat.DEFAULT)
+                .setDelimiter(delimiter)
                 .setHeader()
                 .setSkipHeaderRecord(true)
                 .setTrim(true)

@@ -63,6 +63,10 @@ public class CsvParserServiceTest {
             public boolean isInferTypes() {
                 return true;
             }
+            @Override
+            public char getCsvDelimiter() {
+                return ',';
+            }
         };
 
         List<Map<String, Object>> results = parserService.parse(csvFile, stubConfig);
@@ -139,5 +143,65 @@ public class CsvParserServiceTest {
         });
         assertTrue(exception.getMessage().contains("Malformed row") || exception.getMessage().contains("Column count"), 
                 "Exception should complain about column count mismatch");
+    }
+
+    @Test
+    public void testParseSemicolonDelimiter(@TempDir Path tempDir) throws IOException, CsvParseException {
+        File csvFile = tempDir.resolve("semicolon.csv").toFile();
+        try (FileWriter writer = new FileWriter(csvFile)) {
+            writer.write("id;name;age\n");
+            writer.write("1;John;25\n");
+            writer.write("2;Mary;30\n");
+        }
+
+        AppConfig stubConfig = new AppConfig() {
+            @Override
+            public char getCsvDelimiter() {
+                return ';';
+            }
+            @Override
+            public boolean isInferTypes() {
+                return false;
+            }
+        };
+
+        List<Map<String, Object>> results = parserService.parse(csvFile, stubConfig);
+
+        assertEquals(2, results.size());
+        
+        Map<String, Object> row1 = results.get(0);
+        assertEquals("1", row1.get("id"));
+        assertEquals("John", row1.get("name"));
+        assertEquals("25", row1.get("age"));
+    }
+
+    @Test
+    public void testParseTabDelimiter(@TempDir Path tempDir) throws IOException, CsvParseException {
+        File csvFile = tempDir.resolve("tab.csv").toFile();
+        try (FileWriter writer = new FileWriter(csvFile)) {
+            writer.write("id\tname\tage\n");
+            writer.write("1\tJohn\t25\n");
+            writer.write("2\tMary\t30\n");
+        }
+
+        AppConfig stubConfig = new AppConfig() {
+            @Override
+            public char getCsvDelimiter() {
+                return '\t';
+            }
+            @Override
+            public boolean isInferTypes() {
+                return false;
+            }
+        };
+
+        List<Map<String, Object>> results = parserService.parse(csvFile, stubConfig);
+
+        assertEquals(2, results.size());
+        
+        Map<String, Object> row1 = results.get(0);
+        assertEquals("1", row1.get("id"));
+        assertEquals("John", row1.get("name"));
+        assertEquals("25", row1.get("age"));
     }
 }

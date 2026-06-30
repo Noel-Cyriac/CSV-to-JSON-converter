@@ -1,6 +1,8 @@
-com/example/csvjson/config/AppConfigTest.class
+com/example/csvjson/service/CsvParserServiceTest$3.class
 com/example/csvjson/service/MetadataServiceTest$1.class
+com/example/csvjson/service/MetadataServiceTest.class
+com/example/csvjson/config/AppConfigTest.class
+com/example/csvjson/service/CsvParserServiceTest$2.class
 com/example/csvjson/service/CsvParserServiceTest$1.class
 com/example/csvjson/service/MetadataServiceTest$2.class
 com/example/csvjson/service/CsvParserServiceTest.class
-com/example/csvjson/service/MetadataServiceTest.class

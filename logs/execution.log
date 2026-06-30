@@ -168,3 +168,27 @@ INFO Found 1 CSV files
 INFO Processing users1.csv
 INFO users1.csv converted successfully
 INFO Application Finished
+INFO Application Started
+INFO Found 0 CSV files
+INFO Application Finished
+INFO Application Started
+INFO Found 1 CSV files
+INFO Skipping another_invalid.csv (already successfully processed or permanently failed)
+INFO Application Finished
+INFO Application Started
+INFO Found 1 CSV files
+INFO Processing another_invalid1.csv
+SEVERE another_invalid1.csv failed - Malformed row at record 1: Column count (3) does not match header count (1).
+INFO Application Finished
+INFO Retry execution started
+INFO Found 2 failed CSV files for retry
+INFO Skipping invalid.csv because status is PERMANENT_FAILURE
+INFO Retrying another_invalid1.csv (attempt 2 of 3)
+SEVERE another_invalid1.csv failed on retry attempt 2
+INFO Application Finished
+INFO Retry execution started
+INFO Found 2 failed CSV files for retry
+INFO Skipping invalid.csv because status is PERMANENT_FAILURE
+INFO Retrying another_invalid1.csv (attempt 3 of 3)
+INFO another_invalid1.csv converted successfully on retry
+INFO Application Finished

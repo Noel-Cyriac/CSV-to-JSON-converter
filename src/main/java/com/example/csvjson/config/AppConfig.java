@@ -23,6 +23,7 @@ public class AppConfig {
     private File metadataDir;
     private int maxRetries = 3;
     private boolean inferTypes = true;
+    private char csvDelimiter = ',';
 
     public AppConfig() {
         loadProperties();
@@ -60,6 +61,13 @@ public class AppConfig {
         }
 
         inferTypes = Boolean.parseBoolean(properties.getProperty("json.infer.types", "true"));
+
+        String delimProp = properties.getProperty("csv.delimiter", ",");
+        if ("\\t".equals(delimProp) || "\t".equals(delimProp)) {
+            this.csvDelimiter = '\t';
+        } else if (!delimProp.isEmpty()) {
+            this.csvDelimiter = delimProp.charAt(0);
+        }
     }
 
     /**
@@ -109,5 +117,9 @@ public class AppConfig {
 
     public boolean isInferTypes() {
         return inferTypes;
+    }
+
+    public char getCsvDelimiter() {
+        return csvDelimiter;
     }
 }

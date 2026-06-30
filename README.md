@@ -45,7 +45,12 @@ dir.logs=logs
 dir.metadata=metadata
 max.retries=3
 json.infer.types=true
+csv.delimiter=,
 ```
+
+* `json.infer.types`: Automatically infers and converts CSV cell data types (numbers, booleans). If set to `false`, all values are treated and serialized as plain strings. Defaults to `true`.
+* `csv.delimiter`: The CSV field separator. Supports any single character (e.g. `,`, `;`, `:`) or tab (`\t` or `\\t`). Defaults to `,`.
+
 
 ---
 
