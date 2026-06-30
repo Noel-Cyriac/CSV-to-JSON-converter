@@ -22,6 +22,7 @@ public class AppConfig {
     private File logsDir;
     private File metadataDir;
     private int maxRetries = 3;
+    private boolean inferTypes = true;
 
     public AppConfig() {
         loadProperties();
@@ -57,6 +58,8 @@ public class AppConfig {
             System.err.println("Warning: Invalid max.retries value. Defaulting to 3.");
             maxRetries = 3;
         }
+
+        inferTypes = Boolean.parseBoolean(properties.getProperty("json.infer.types", "true"));
     }
 
     /**
@@ -102,5 +105,9 @@ public class AppConfig {
 
     public int getMaxRetries() {
         return maxRetries;
+    }
+
+    public boolean isInferTypes() {
+        return inferTypes;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.csvjson.service;
 
+import com.example.csvjson.config.AppConfig;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -21,11 +22,12 @@ public class CsvParserService {
     /**
      * Parses the given CSV file into a List of Maps.
      *
-     * @param file The CSV file to parse.
+     * @param file   The CSV file to parse.
+     * @param config The application configuration.
      * @return List of rows, where each row is a map from header to cell value.
      * @throws CsvParseException If the file is empty, headers are missing, rows are malformed, or CSV is invalid.
      */
-    public List<Map<String, String>> parse(File file) throws CsvParseException {
+    public List<Map<String, Object>> parse(File file, AppConfig config) throws CsvParseException {
         if (file == null) {
             throw new CsvParseException("File reference is null.");
         }
@@ -36,7 +38,7 @@ public class CsvParserService {
             throw new CsvParseException("CSV file is empty.");
         }
 
-        List<Map<String, String>> results = new ArrayList<>();
+        List<Map<String, Object>> results = new ArrayList<>();
         CSVFormat csvFormat = CSVFormat.Builder.create(CSVFormat.DEFAULT)
                 .setHeader()
                 .setSkipHeaderRecord(true)
@@ -64,9 +66,11 @@ public class CsvParserService {
                             + ": Column count (" + record.size() + ") does not match header count (" + headerMap.size() + ").");
                 }
 
-                Map<String, String> row = new LinkedHashMap<>();
+                Map<String, Object> row = new LinkedHashMap<>();
                 for (String header : headerMap.keySet()) {
-                    row.put(header, record.get(header));
+                    String rawValue = record.get(header);
+                    Object parsedValue = (config != null && config.isInferTypes()) ? inferType(rawValue) : rawValue;
+                    row.put(header, parsedValue);
                 }
                 results.add(row);
             }
@@ -77,5 +81,40 @@ public class CsvParserService {
         }
 
         return results;
+    }
+
+    private Object inferType(String value) {
+        if (value == null || value.trim().isEmpty()) {
+            return null;
+        }
+        String trimmed = value.trim();
+
+        // Boolean Inference
+        if ("true".equalsIgnoreCase(trimmed)) return Boolean.TRUE;
+        if ("false".equalsIgnoreCase(trimmed)) return Boolean.FALSE;
+
+        // Integer/Long Inference
+        if (trimmed.matches("-?\\d+")) {
+            // Prevent stripping leading zeros in codes/ZIPs (e.g. "02138" shouldn't become 2138)
+            if (trimmed.length() > 1 && trimmed.startsWith("0") && !trimmed.startsWith("-")) {
+                return trimmed;
+            }
+            try {
+                return Long.parseLong(trimmed);
+            } catch (NumberFormatException e) {
+                return trimmed; // fallback to string if number exceeds Long capacity
+            }
+        }
+
+        // Decimal/Double Inference
+        if (trimmed.matches("-?\\d*\\.\\d+")) {
+            try {
+                return Double.parseDouble(trimmed);
+            } catch (NumberFormatException e) {
+                return trimmed;
+            }
+        }
+
+        return value;
     }
 }

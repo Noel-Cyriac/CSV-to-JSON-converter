@@ -1,5 +1,6 @@
 package com.example.csvjson.service;
 
+import com.example.csvjson.config.AppConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -23,7 +24,7 @@ public class CsvParserServiceTest {
     }
 
     @Test
-    public void testParseValidCsv(@TempDir Path tempDir) throws IOException, CsvParseException {
+    public void testParseValidCsvNoInference(@TempDir Path tempDir) throws IOException, CsvParseException {
         File csvFile = tempDir.resolve("valid.csv").toFile();
         try (FileWriter writer = new FileWriter(csvFile)) {
             writer.write("id,name,age\n");
@@ -31,19 +32,58 @@ public class CsvParserServiceTest {
             writer.write("2,Mary,30\n");
         }
 
-        List<Map<String, String>> results = parserService.parse(csvFile);
+        // Passing null disables type inference
+        List<Map<String, Object>> results = parserService.parse(csvFile, null);
 
         assertEquals(2, results.size());
         
-        Map<String, String> row1 = results.get(0);
+        Map<String, Object> row1 = results.get(0);
         assertEquals("1", row1.get("id"));
         assertEquals("John", row1.get("name"));
         assertEquals("25", row1.get("age"));
 
-        Map<String, String> row2 = results.get(1);
+        Map<String, Object> row2 = results.get(1);
         assertEquals("2", row2.get("id"));
         assertEquals("Mary", row2.get("name"));
         assertEquals("30", row2.get("age"));
+    }
+
+    @Test
+    public void testParseTypeInference(@TempDir Path tempDir) throws IOException, CsvParseException {
+        File csvFile = tempDir.resolve("inference.csv").toFile();
+        try (FileWriter writer = new FileWriter(csvFile)) {
+            writer.write("id,name,age,active,price,zip\n");
+            writer.write("101,John,25,true,89.99,02138\n");
+            writer.write("102,Mary,30,false,120.0,00912\n");
+        }
+
+        // Create a stub AppConfig with inferTypes = true
+        AppConfig stubConfig = new AppConfig() {
+            @Override
+            public boolean isInferTypes() {
+                return true;
+            }
+        };
+
+        List<Map<String, Object>> results = parserService.parse(csvFile, stubConfig);
+
+        assertEquals(2, results.size());
+        
+        Map<String, Object> row1 = results.get(0);
+        assertEquals(101L, row1.get("id")); // Parsed as Long
+        assertEquals("John", row1.get("name")); // Remains String
+        assertEquals(25L, row1.get("age")); // Parsed as Long
+        assertEquals(Boolean.TRUE, row1.get("active")); // Parsed as Boolean
+        assertEquals(89.99, row1.get("price")); // Parsed as Double
+        assertEquals("02138", row1.get("zip")); // Retains leading zero as String
+
+        Map<String, Object> row2 = results.get(1);
+        assertEquals(102L, row2.get("id"));
+        assertEquals("Mary", row2.get("name"));
+        assertEquals(30L, row2.get("age"));
+        assertEquals(Boolean.FALSE, row2.get("active"));
+        assertEquals(120.0, row2.get("price"));
+        assertEquals("00912", row2.get("zip"));
     }
 
     @Test
@@ -52,7 +92,7 @@ public class CsvParserServiceTest {
         csvFile.createNewFile(); // 0 bytes
 
         CsvParseException exception = assertThrows(CsvParseException.class, () -> {
-            parserService.parse(csvFile);
+            parserService.parse(csvFile, null);
         });
         assertTrue(exception.getMessage().contains("empty"), "Exception message should mention file is empty");
     }
@@ -65,7 +105,7 @@ public class CsvParserServiceTest {
         }
 
         assertThrows(CsvParseException.class, () -> {
-            parserService.parse(csvFile);
+            parserService.parse(csvFile, null);
         });
     }
 
@@ -78,7 +118,7 @@ public class CsvParserServiceTest {
         }
 
         CsvParseException exception = assertThrows(CsvParseException.class, () -> {
-            parserService.parse(csvFile);
+            parserService.parse(csvFile, null);
         });
         String msg = exception.getMessage().toLowerCase();
         assertTrue(msg.contains("blank") || msg.contains("empty") || msg.contains("missing"),
@@ -95,7 +135,7 @@ public class CsvParserServiceTest {
         }
 
         CsvParseException exception = assertThrows(CsvParseException.class, () -> {
-            parserService.parse(csvFile);
+            parserService.parse(csvFile, null);
         });
         assertTrue(exception.getMessage().contains("Malformed row") || exception.getMessage().contains("Column count"), 
                 "Exception should complain about column count mismatch");

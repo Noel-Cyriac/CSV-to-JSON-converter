@@ -62,7 +62,7 @@ public class BatchProcessor {
 
             try {
                 // Parse CSV
-                List<Map<String, String>> parsedData = parserService.parse(file);
+                List<Map<String, Object>> parsedData = parserService.parse(file, config);
 
                 // Generate and write JSON
                 jsonWriterService.writeJson(filename, parsedData);

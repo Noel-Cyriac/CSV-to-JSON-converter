@@ -80,7 +80,7 @@ public class RetryService {
 
             try {
                 // Parse failed file from failed/ directory
-                List<Map<String, String>> data = parserService.parse(file);
+                List<Map<String, Object>> data = parserService.parse(file, config);
 
                 // Write JSON output
                 jsonWriterService.writeJson(filename, data);
