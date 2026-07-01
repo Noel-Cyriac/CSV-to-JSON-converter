@@ -23,6 +23,7 @@ public class AppConfig {
     private File metadataDir;
     private boolean inferTypes = true;
     private char csvDelimiter = ',';
+    private String csvEncoding = "UTF-8";
 
     public AppConfig() {
         loadProperties();
@@ -60,6 +61,8 @@ public class AppConfig {
         } else if (!delimProp.isEmpty()) {
             this.csvDelimiter = delimProp.charAt(0);
         }
+
+        this.csvEncoding = properties.getProperty("csv.encoding", "UTF-8");
     }
 
     /**
@@ -109,5 +112,9 @@ public class AppConfig {
 
     public char getCsvDelimiter() {
         return csvDelimiter;
+    }
+
+    public String getCsvEncoding() {
+        return csvEncoding;
     }
 }

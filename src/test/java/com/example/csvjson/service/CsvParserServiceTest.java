@@ -204,4 +204,58 @@ public class CsvParserServiceTest {
         assertEquals("John", row1.get("name"));
         assertEquals("25", row1.get("age"));
     }
+
+    @Test
+    public void testParseUtf8Encoding(@TempDir Path tempDir) throws IOException, CsvParseException {
+        File csvFile = tempDir.resolve("utf8.csv").toFile();
+        try (java.io.OutputStreamWriter writer = new java.io.OutputStreamWriter(
+                new java.io.FileOutputStream(csvFile), java.nio.charset.StandardCharsets.UTF_8)) {
+            writer.write("id,name,symbol\n");
+            writer.write("1,Café,€\n");
+        }
+
+        AppConfig stubConfig = new AppConfig() {
+            @Override
+            public String getCsvEncoding() {
+                return "UTF-8";
+            }
+            @Override
+            public char getCsvDelimiter() {
+                return ',';
+            }
+        };
+
+        List<Map<String, Object>> results = parserService.parse(csvFile, stubConfig);
+        assertEquals(1, results.size());
+        Map<String, Object> row = results.get(0);
+        assertEquals("Café", row.get("name"));
+        assertEquals("€", row.get("symbol"));
+    }
+
+    @Test
+    public void testParseIso88591Encoding(@TempDir Path tempDir) throws IOException, CsvParseException {
+        File csvFile = tempDir.resolve("iso.csv").toFile();
+        try (java.io.OutputStreamWriter writer = new java.io.OutputStreamWriter(
+                new java.io.FileOutputStream(csvFile), java.nio.charset.StandardCharsets.ISO_8859_1)) {
+            writer.write("id,name,symbol\n");
+            writer.write("1,Café,£\n");
+        }
+
+        AppConfig stubConfig = new AppConfig() {
+            @Override
+            public String getCsvEncoding() {
+                return "ISO-8859-1";
+            }
+            @Override
+            public char getCsvDelimiter() {
+                return ',';
+            }
+        };
+
+        List<Map<String, Object>> results = parserService.parse(csvFile, stubConfig);
+        assertEquals(1, results.size());
+        Map<String, Object> row = results.get(0);
+        assertEquals("Café", row.get("name"));
+        assertEquals("£", row.get("symbol"));
+    }
 }
