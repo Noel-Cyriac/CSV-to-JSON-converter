@@ -67,10 +67,10 @@ public class MetadataService {
     }
 
     /**
-     * Checks if a file has already been successfully processed or permanently failed.
+     * Checks if a file has already been successfully processed.
      *
      * @param fileName Name of the file.
-     * @return true if status is SUCCESS or PERMANENT_FAILURE, false otherwise.
+     * @return true if status is SUCCESS, false otherwise.
      */
     public synchronized boolean alreadyProcessed(String fileName) {
         FileMetadata metadata = metadataCache.get(fileName);
@@ -78,7 +78,7 @@ public class MetadataService {
             return false;
         }
         String status = metadata.getStatus();
-        return Constants.STATUS_SUCCESS.equals(status) || Constants.STATUS_PERMANENT_FAILURE.equals(status);
+        return Constants.STATUS_SUCCESS.equals(status);
     }
 
     /**
@@ -117,14 +117,6 @@ public class MetadataService {
         saveAllMetadata();
     }
 
-    /**
-     * Marks a file as PERMANENT_FAILURE.
-     */
-    public synchronized void markPermanentFailure(String fileName, int retryCount, LocalDateTime lastAttempt) {
-        FileMetadata metadata = new FileMetadata(fileName, Constants.STATUS_PERMANENT_FAILURE, retryCount, lastAttempt);
-        metadataCache.put(fileName, metadata);
-        saveAllMetadata();
-    }
 
     /**
      * Saves the entire metadata cache back to the CSV ledger.

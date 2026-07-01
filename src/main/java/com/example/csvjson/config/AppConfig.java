@@ -21,7 +21,6 @@ public class AppConfig {
     private File failedDir;
     private File logsDir;
     private File metadataDir;
-    private int maxRetries = 3;
     private boolean inferTypes = true;
     private char csvDelimiter = ',';
 
@@ -52,13 +51,6 @@ public class AppConfig {
         failedDir = new File(properties.getProperty("dir.failed", "failed"));
         logsDir = new File(properties.getProperty("dir.logs", "logs"));
         metadataDir = new File(properties.getProperty("dir.metadata", "metadata"));
-
-        try {
-            maxRetries = Integer.parseInt(properties.getProperty("max.retries", "3"));
-        } catch (NumberFormatException e) {
-            System.err.println("Warning: Invalid max.retries value. Defaulting to 3.");
-            maxRetries = 3;
-        }
 
         inferTypes = Boolean.parseBoolean(properties.getProperty("json.infer.types", "true"));
 
@@ -109,10 +101,6 @@ public class AppConfig {
 
     public File getMetadataDir() {
         return metadataDir;
-    }
-
-    public int getMaxRetries() {
-        return maxRetries;
     }
 
     public boolean isInferTypes() {

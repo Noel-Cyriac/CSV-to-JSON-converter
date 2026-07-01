@@ -1,6 +1,6 @@
 # CSV to JSON Converter
 
-A production-style standalone Java application built on Java 21 and Maven. It scans a directory for CSV files, converts them into pretty-printed JSON files (with automatic data type inference), prevents duplicate processing using a metadata ledger, maintains execution and results logs, and supports manual or scheduled retries with a maximum retry limit.
+A production-style standalone Java application built on Java 21 and Maven. It scans a directory for CSV files, converts them into pretty-printed JSON files (with automatic data type inference), prevents duplicate processing using a metadata ledger, maintains execution and results logs, and supports manual or scheduled retries.
 
 ---
 
@@ -18,7 +18,7 @@ A production-style standalone Java application built on Java 21 and Maven. It sc
 ```text
 CSV-to-JSON-converter/
 ├── config/
-│   └── application.properties       # Directory configuration and max retries
+│   └── application.properties       # Directory configuration
 ├── input/                           # Drop new CSV files here
 ├── output/                          # Generated pretty JSON outputs
 ├── processed/                       # CSV files processed successfully
@@ -35,7 +35,7 @@ CSV-to-JSON-converter/
 ---
 
 ## Configurations (`config/application.properties`)
-You can configure folder directories relative to the execution root, the maximum retry limit, and processing behavior:
+You can configure folder directories relative to the execution root and processing behavior:
 ```properties
 dir.input=input
 dir.output=output
@@ -43,7 +43,6 @@ dir.processed=processed
 dir.failed=failed
 dir.logs=logs
 dir.metadata=metadata
-max.retries=3
 json.infer.types=true
 csv.delimiter=,
 ```
@@ -97,8 +96,6 @@ This is suitable for running via a cron job at designated intervals, e.g., every
    * **Failure**: Moved to `failed/`. Metadata: `FAILED`, `retryCount: 1`.
 2. **Retry Run**:
    * Scans `failed/` directory.
-   * If `retryCount < max.retries` (3):
-     * Retries parsing and writing.
-     * **Success**: Moved to `processed/`. Metadata: `SUCCESS`, `retryCount: 0`.
-     * **Failure**: Stays in `failed/`. Metadata: `FAILED`, `retryCount: incremented`. If count reaches `3`, metadata changes to `PERMANENT_FAILURE`.
-   * If status is `PERMANENT_FAILURE`, the file is skipped during retries.
+   * Retries parsing and writing.
+   * **Success**: Moved to `processed/`. Metadata: `SUCCESS`, `retryCount: 0`.
+   * **Failure**: Stays in `failed/`. Metadata: `FAILED`, `retryCount: incremented`.

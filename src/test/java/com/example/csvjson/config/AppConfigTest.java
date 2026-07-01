@@ -16,7 +16,6 @@ public class AppConfigTest {
         assertNotNull(config.getLogsDir(), "Logs directory should not be null");
         assertNotNull(config.getMetadataDir(), "Metadata directory should not be null");
 
-        assertTrue(config.getMaxRetries() >= 0, "Max retries should be non-negative");
         assertTrue(config.getCsvDelimiter() != '\0', "CSV delimiter should be loaded");
     }
 }

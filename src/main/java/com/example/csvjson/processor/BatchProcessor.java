@@ -52,9 +52,9 @@ public class BatchProcessor {
         for (File file : files) {
             String filename = file.getName();
 
-            // Skip if already processed successfully or marked as permanent failure
+            // Skip if already processed successfully
             if (metadataService.alreadyProcessed(filename)) {
-                logService.logInfo("Skipping " + filename + " (already successfully processed or permanently failed)");
+                logService.logInfo("Skipping " + filename + " (already successfully processed)");
                 continue;
             }
 

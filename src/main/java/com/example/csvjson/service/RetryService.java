@@ -67,16 +67,8 @@ public class RetryService {
                 logService.logInfo("Failed file " + filename + " has no metadata. Initializing retry count to 0.");
             }
 
-            int maxRetries = config.getMaxRetries();
-            if (currentRetryCount >= maxRetries) {
-                logService.logInfo("Skipping " + filename + " because retry count (" + currentRetryCount + ") reached max retries (" + maxRetries + ").");
-                // Ensure metadata reflects permanent failure if not already set
-                metadataService.markPermanentFailure(filename, currentRetryCount, LocalDateTime.now());
-                continue;
-            }
-
             int attempt = currentRetryCount + 1;
-            logService.logInfo("Retrying " + filename + " (attempt " + attempt + " of " + maxRetries + ")");
+            logService.logInfo("Retrying " + filename + " (attempt " + attempt + ")");
 
             try {
                 // Parse failed file from failed/ directory
@@ -105,28 +97,15 @@ public class RetryService {
                 int newRetryCount = currentRetryCount + 1;
                 LocalDateTime now = LocalDateTime.now();
 
-                if (newRetryCount >= maxRetries) {
-                    // Mark as permanent failure
-                    metadataService.markPermanentFailure(filename, newRetryCount, now);
-                    logService.logError("invalid.csv failed".equals(filename) ? "ERROR invalid.csv failed" : filename + " failed permanently after " + newRetryCount + " attempts");
-                    logService.logError(filename + " marked as PERMANENT_FAILURE");
-                    logService.saveResult(new ProcessingResult(
-                            filename,
-                            Constants.STATUS_PERMANENT_FAILURE,
-                            "Failed permanently: " + e.getMessage(),
-                            now
-                    ));
-                } else {
-                    // Mark as failed and keep in failed/
-                    metadataService.markFailure(filename, newRetryCount, now);
-                    logService.logError("invalid.csv failed".equals(filename) ? "ERROR invalid.csv failed" : filename + " failed on retry attempt " + newRetryCount);
-                    logService.saveResult(new ProcessingResult(
-                            filename,
-                            Constants.STATUS_FAILED,
-                            "Failed on retry: " + e.getMessage(),
-                            now
-                    ));
-                }
+                // Mark as failed and keep in failed/
+                metadataService.markFailure(filename, newRetryCount, now);
+                logService.logError("invalid.csv failed".equals(filename) ? "ERROR invalid.csv failed" : filename + " failed on retry attempt " + newRetryCount);
+                logService.saveResult(new ProcessingResult(
+                        filename,
+                        Constants.STATUS_FAILED,
+                        "Failed on retry: " + e.getMessage(),
+                        now
+                ));
             }
         }
 

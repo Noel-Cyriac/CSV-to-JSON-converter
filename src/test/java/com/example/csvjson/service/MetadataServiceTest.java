@@ -87,21 +87,6 @@ public class MetadataServiceTest {
     }
 
     @Test
-    public void testMarkPermanentFailure() {
-        String filename = "perm_fail.csv";
-        LocalDateTime now = LocalDateTime.now();
-        metadataService.markPermanentFailure(filename, 3, now);
-
-        // Permanent failure files are considered "already processed" to prevent standard runs
-        assertTrue(metadataService.alreadyProcessed(filename));
-
-        FileMetadata meta = metadataService.getMetadata(filename);
-        assertNotNull(meta);
-        assertEquals(Constants.STATUS_PERMANENT_FAILURE, meta.getStatus());
-        assertEquals(3, meta.getRetryCount());
-    }
-
-    @Test
     public void testLoadFromExistingFile(@TempDir Path tempDir) throws IOException {
         File metaFile = new File(tempDir.toFile(), "processed-files.csv");
         try (FileWriter writer = new FileWriter(metaFile)) {
