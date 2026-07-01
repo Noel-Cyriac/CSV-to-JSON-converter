@@ -24,6 +24,7 @@ public class AppConfig {
     private boolean inferTypes = true;
     private char csvDelimiter = ',';
     private String csvEncoding = "UTF-8";
+    private boolean jsonPretty = true;
 
     public AppConfig() {
         loadProperties();
@@ -63,6 +64,7 @@ public class AppConfig {
         }
 
         this.csvEncoding = properties.getProperty("csv.encoding", "UTF-8");
+        this.jsonPretty = Boolean.parseBoolean(properties.getProperty("json.pretty", "true"));
     }
 
     /**
@@ -116,5 +118,9 @@ public class AppConfig {
 
     public String getCsvEncoding() {
         return csvEncoding;
+    }
+
+    public boolean isJsonPretty() {
+        return jsonPretty;
     }
 }

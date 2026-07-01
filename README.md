@@ -46,11 +46,13 @@ dir.metadata=metadata
 json.infer.types=true
 csv.delimiter=,
 csv.encoding=UTF-8
+json.pretty=true
 ```
 
 * `json.infer.types`: Automatically infers and converts CSV cell data types (numbers, booleans). If set to `false`, all values are treated and serialized as plain strings. Defaults to `true`.
 * `csv.delimiter`: The CSV field separator. Supports any single character (e.g. `,`, `;`, `:`) or tab (`\t` or `\\t`). Defaults to `,`.
 * `csv.encoding`: The character encoding used to read CSV files (e.g. `UTF-8`, `ISO-8859-1`). Defaults to `UTF-8`.
+* `json.pretty`: Controls JSON formatting. If set to `true`, the output JSON is pretty-printed (indented). If `false`, the output is compact (minified). Defaults to `true`.
 
 
 ---

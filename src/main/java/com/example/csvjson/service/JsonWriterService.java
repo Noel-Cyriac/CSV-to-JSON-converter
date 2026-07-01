@@ -17,7 +17,12 @@ public class JsonWriterService {
 
     public JsonWriterService(AppConfig config) {
         this.config = config;
-        this.objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+        this.objectMapper = new ObjectMapper();
+        if (config == null || config.isJsonPretty()) {
+            this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        } else {
+            this.objectMapper.disable(SerializationFeature.INDENT_OUTPUT);
+        }
     }
 
     /**

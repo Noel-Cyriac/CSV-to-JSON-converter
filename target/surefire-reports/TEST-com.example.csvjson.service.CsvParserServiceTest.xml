@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/surefire/surefirebooter-20260701180507766_3.jar /home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/surefire 2026-07-01T18-05-07_677-jvmRun1 surefire-20260701180507766_1tmp surefire_0-20260701180507766_2tmp"/>
+    <property name="sun.java.command" value="/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/surefire/surefirebooter-20260701181931657_3.jar /home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/surefire 2026-07-01T18-19-31_553-jvmRun1 surefire-20260701181931657_1tmp surefire_0-20260701181931657_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/test-classes:/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/classes:/home/noelcyriac/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.1/jackson-databind-2.17.1.jar:/home/noelcyriac/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.1/jackson-annotations-2.17.1.jar:/home/noelcyriac/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.1/jackson-core-2.17.1.jar:/home/noelcyriac/.m2/repository/org/apache/commons/commons-csv/1.11.0/commons-csv-1.11.0.jar:/home/noelcyriac/.m2/repository/commons-io/commons-io/2.16.1/commons-io-2.16.1.jar:/home/noelcyriac/.m2/repository/commons-codec/commons-codec/1.16.1/commons-codec-1.16.1.jar:/home/noelcyriac/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar:/home/noelcyriac/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/noelcyriac/.m2/repository/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar:/home/noelcyriac/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/noelcyriac/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.2/junit-jupiter-engine-5.10.2.jar:/home/noelcyriac/.m2/repository/org/junit/platform/junit-platform-engine/1.10.2/junit-platform-engine-1.10.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -28,7 +28,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/surefire/surefirebooter-20260701180507766_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/noelcyriac/Documents/June_Projects/CSV-to-JSON-converter/target/surefire/surefirebooter-20260701181931657_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.11+10-1-22.04.2-Ubuntu"/>
     <property name="user.name" value="noelcyriac"/>
@@ -56,12 +56,12 @@
   </properties>
   <testcase name="testParseIso88591Encoding(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.004"/>
   <testcase name="testParseSemicolonDelimiter(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.003"/>
-  <testcase name="testParseTabDelimiter(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.003"/>
-  <testcase name="testParseEmptyFile(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.004"/>
-  <testcase name="testParseBlankHeaderName(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.004"/>
-  <testcase name="testParseUtf8Encoding(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.004"/>
-  <testcase name="testParseMalformedRow(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.012"/>
+  <testcase name="testParseTabDelimiter(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.005"/>
+  <testcase name="testParseEmptyFile(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.003"/>
+  <testcase name="testParseBlankHeaderName(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.005"/>
+  <testcase name="testParseUtf8Encoding(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.003"/>
+  <testcase name="testParseMalformedRow(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.013"/>
   <testcase name="testParseMissingHeaders(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.003"/>
-  <testcase name="testParseTypeInference(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.005"/>
-  <testcase name="testParseValidCsvNoInference(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.004"/>
+  <testcase name="testParseTypeInference(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.003"/>
+  <testcase name="testParseValidCsvNoInference(Path)" classname="com.example.csvjson.service.CsvParserServiceTest" time="0.002"/>
 </testsuite>
