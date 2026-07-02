@@ -1,0 +1,45 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.nextVal
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# IDEs and Editors
+.idea/
+*.iml
+*.iws
+.classpath
+.project
+.settings/
+.factorypath
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Implementation Plans
+implementaion_plan/
+implementation_plan/
+
+# Runtime inputs, outputs, and log files that shouldn't be tracked in Git.
+# Note: Existing files in these folders will continue to be tracked by Git unless explicitly unstaged.
+input/*.csv
+!input/.gitkeep
+output/*.json
+!output/.gitkeep
+processed/*.csv
+!processed/.gitkeep
+failed/*.csv
+!failed/.gitkeep
+logs/*.log
+logs/*.csv
+!logs/.gitkeep
+metadata/processed-files.csv
