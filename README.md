@@ -87,17 +87,27 @@ To scan the `input/` folder, parse new CSVs, write JSONs to `output/`, and move 
 java -jar target/csv-json-converter-1.0.0.jar
 ```
 
-### 2. Manual/Scheduled Retry Mode
+### 2. Manual Retry Mode
 To process files that are currently in the `failed/` directory:
 ```bash
 java -jar target/csv-json-converter-1.0.0.jar --retryFailed
 ```
-This is suitable for running via a cron job at designated intervals, e.g., every 2 hours:
-```text
-0 */2 * * * java -jar /path/to/csv-json-converter-1.0.0.jar
-```
+
+### 3. Scheduled Mode (Cron)
+Both modes can be scheduled to run automatically (e.g. via cron jobs) at designated intervals.
+
+* **Scheduled Normal Processing** (e.g. scans for new files every hour):
+  ```text
+  0 * * * * java -jar /path/to/csv-json-converter-1.0.0.jar
+  ```
+
+* **Scheduled Retry Processing** (e.g. retries failed files every 2 hours):
+  ```text
+  0 */2 * * * java -jar /path/to/csv-json-converter-1.0.0.jar --retryFailed
+  ```
 
 ---
+
 
 ## State Transition Rules
 1. **New File (Input)**:
