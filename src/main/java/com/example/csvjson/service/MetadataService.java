@@ -20,7 +20,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Manages the processed-files.csv ledger to check file status and update execution states.
+ * Manages the processed-files.csv ledger to check file status and update
+ * execution states.
  */
 public class MetadataService {
     private final AppConfig config;
@@ -48,7 +49,7 @@ public class MetadataService {
                 .build();
 
         try (Reader reader = new FileReader(metadataFile);
-             CSVParser parser = new CSVParser(reader, csvFormat)) {
+                CSVParser parser = new CSVParser(reader, csvFormat)) {
 
             for (CSVRecord record : parser) {
                 String filename = record.get("filename");
@@ -60,8 +61,10 @@ public class MetadataService {
                 metadataCache.put(filename, metadata);
             }
         } catch (Exception e) {
-            // Log warning, but allow application to continue with empty cache or partial load
-            System.err.println("Warning: Failed to load metadata from " + metadataFile.getAbsolutePath() + ". Error: " + e.getMessage());
+            // Log warning, but allow application to continue with empty cache or partial
+            // load
+            System.err.println("Warning: Failed to load metadata from " + metadataFile.getAbsolutePath() + ". Error: "
+                    + e.getMessage());
         }
         return metadataCache;
     }
@@ -117,7 +120,6 @@ public class MetadataService {
         saveAllMetadata();
     }
 
-
     /**
      * Saves the entire metadata cache back to the CSV ledger.
      */
@@ -127,19 +129,19 @@ public class MetadataService {
                 .build();
 
         try (FileWriter writer = new FileWriter(metadataFile);
-             CSVPrinter printer = new CSVPrinter(writer, csvFormat)) {
+                CSVPrinter printer = new CSVPrinter(writer, csvFormat)) {
 
             for (FileMetadata metadata : metadataCache.values()) {
                 printer.printRecord(
                         metadata.getFilename(),
                         metadata.getStatus(),
                         metadata.getRetryCount(),
-                        metadata.getLastAttempt().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-                );
+                        metadata.getLastAttempt().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
             }
             printer.flush();
         } catch (IOException e) {
-            System.err.println("Error: Failed to save metadata to " + metadataFile.getAbsolutePath() + ". Error: " + e.getMessage());
+            System.err.println("Error: Failed to save metadata to " + metadataFile.getAbsolutePath() + ". Error: "
+                    + e.getMessage());
         }
     }
 }

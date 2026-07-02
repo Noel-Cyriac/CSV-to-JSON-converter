@@ -14,3 +14,8 @@ users1.csv,SUCCESS,Converted successfully,2026-06-30T14:09:57.65503172
 another_invalid1.csv,FAILED,Malformed row at record 1: Column count (3) does not match header count (1).,2026-06-30T16:53:04.069589482
 another_invalid1.csv,FAILED,Failed on retry: Malformed row at record 1: Column count (3) does not match header count (1).,2026-06-30T16:54:01.491297882
 another_invalid1.csv,SUCCESS,Converted successfully on retry (attempt 3),2026-06-30T16:58:53.13970837
+sample3.csv,FAILED,Malformed row at record 2: Column count (3) does not match header count (4).,2026-07-02T12:00:21.981513846
+sample1.csv,SUCCESS,Converted successfully,2026-07-02T12:00:21.991864105
+sample5.csv,SUCCESS,Converted successfully,2026-07-02T12:00:21.993904199
+sample4.csv,SUCCESS,Converted successfully,2026-07-02T12:00:21.995598282
+sample2.csv,SUCCESS,Converted successfully,2026-07-02T12:00:21.999694867

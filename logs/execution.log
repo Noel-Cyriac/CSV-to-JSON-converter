@@ -192,3 +192,16 @@ INFO Skipping invalid.csv because status is PERMANENT_FAILURE
 INFO Retrying another_invalid1.csv (attempt 3 of 3)
 INFO another_invalid1.csv converted successfully on retry
 INFO Application Finished
+INFO Application Started
+INFO Found 5 CSV files
+INFO Processing sample3.csv
+INFO Processing sample5.csv
+INFO Processing sample4.csv
+INFO Processing sample2.csv
+SEVERE sample3.csv failed - Malformed row at record 2: Column count (3) does not match header count (4).
+INFO Processing sample1.csv
+INFO sample1.csv converted successfully
+INFO sample5.csv converted successfully
+INFO sample4.csv converted successfully
+INFO sample2.csv converted successfully
+INFO Application Finished

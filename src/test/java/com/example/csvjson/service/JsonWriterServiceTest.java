@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -23,6 +22,7 @@ public class JsonWriterServiceTest {
             public File getOutputDir() {
                 return tempDir.toFile();
             }
+
             @Override
             public boolean isJsonPretty() {
                 return true;
@@ -52,6 +52,7 @@ public class JsonWriterServiceTest {
             public File getOutputDir() {
                 return tempDir.toFile();
             }
+
             @Override
             public boolean isJsonPretty() {
                 return false;
@@ -69,7 +70,8 @@ public class JsonWriterServiceTest {
         assertTrue(outputFile.exists());
 
         String content = Files.readString(outputFile.toPath()).trim();
-        // A compact JSON should be on a single line (no newlines inside the JSON structure)
+        // A compact JSON should be on a single line (no newlines inside the JSON
+        // structure)
         assertFalse(content.contains("\n"), "Compact JSON should not contain newlines");
         assertFalse(content.contains("\r"), "Compact JSON should not contain carriage returns");
         assertEquals("{\"name\":\"Bob\",\"age\":25}", content);

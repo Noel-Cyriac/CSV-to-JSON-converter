@@ -78,11 +78,6 @@ public void markFailure(String fileName, int retryCount, LocalDateTime lastAttem
     appendMetadataRecord(metadata);
 }
 
-public void markPermanentFailure(String fileName, int retryCount, LocalDateTime lastAttempt) {
-    FileMetadata metadata = new FileMetadata(fileName, Constants.STATUS_PERMANENT_FAILURE, retryCount, lastAttempt);
-    metadataCache.put(fileName, metadata);
-    appendMetadataRecord(metadata);
-}
 ```
 
 ### 3. Multi-threaded Processing

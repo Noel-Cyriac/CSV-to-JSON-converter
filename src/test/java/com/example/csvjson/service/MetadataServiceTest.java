@@ -11,8 +11,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -116,5 +120,46 @@ public class MetadataServiceTest {
         assertNotNull(f2);
         assertEquals(Constants.STATUS_FAILED, f2.getStatus());
         assertEquals(2, f2.getRetryCount());
+    }
+
+    @Test
+    public void testConcurrentWrites(@TempDir Path tempDir) throws InterruptedException, IOException {
+        AppConfig customConfig = new AppConfig() {
+            @Override
+            public File getMetadataDir() {
+                return tempDir.toFile();
+            }
+        };
+        MetadataService service = new MetadataService(customConfig);
+        
+        int threadCount = 10;
+        ExecutorService executor = Executors.newFixedThreadPool(threadCount);
+        CountDownLatch latch = new CountDownLatch(threadCount);
+
+        for (int i = 0; i < threadCount; i++) {
+            final int index = i;
+            executor.submit(() -> {
+                try {
+                    service.markSuccess("file_" + index + ".csv", 0, LocalDateTime.now());
+                } finally {
+                    latch.countDown();
+                }
+            });
+        }
+
+        latch.await();
+        executor.shutdown();
+
+        // Check cache in memory (reloaded from disk to verify persistence)
+        Map<String, FileMetadata> cache = service.loadMetadata();
+        assertEquals(threadCount, cache.size(), "All concurrent writes should be loaded into the cache");
+        for (int i = 0; i < threadCount; i++) {
+            assertNotNull(cache.get("file_" + i + ".csv"));
+        }
+
+        // Verify CSV file contains correct number of rows (+1 for header)
+        File ledgerFile = new File(tempDir.toFile(), "processed-files.csv");
+        long linesCount = Files.lines(ledgerFile.toPath()).count();
+        assertEquals(threadCount + 1, linesCount, "CSV ledger file should contain all written records plus header");
     }
 }

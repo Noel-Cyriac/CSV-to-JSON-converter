@@ -25,6 +25,7 @@ public class AppConfig {
     private char csvDelimiter = ',';
     private String csvEncoding = "UTF-8";
     private boolean jsonPretty = true;
+    private int processingThreads = 4;
 
     public AppConfig() {
         loadProperties();
@@ -65,6 +66,11 @@ public class AppConfig {
 
         this.csvEncoding = properties.getProperty("csv.encoding", "UTF-8");
         this.jsonPretty = Boolean.parseBoolean(properties.getProperty("json.pretty", "true"));
+        try {
+            this.processingThreads = Integer.parseInt(properties.getProperty("processing.threads", "4"));
+        } catch (NumberFormatException e) {
+            this.processingThreads = 4;
+        }
     }
 
     /**
@@ -122,5 +128,9 @@ public class AppConfig {
 
     public boolean isJsonPretty() {
         return jsonPretty;
+    }
+
+    public int getProcessingThreads() {
+        return processingThreads;
     }
 }
