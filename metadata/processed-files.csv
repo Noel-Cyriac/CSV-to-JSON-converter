@@ -1,7 +1,0 @@
-filename,status,retryCount,lastAttempt
-invalid.csv,FAILED,5,2026-07-02T12:28:56.590050306
-users.csv,SUCCESS,0,2026-06-25T10:23:13.432943133
-another_invalid.csv,SUCCESS,0,2026-06-25T10:25:18.839299853
-invalid1.csv,SUCCESS,0,2026-06-29T13:57:56.981950835
-Company_Sales_and_Performance_Data.csv,SUCCESS,0,2026-06-25T16:45:32.702600779
-products.csv,SUCCESS,0,2026-06-25T10:23:13.421403419
