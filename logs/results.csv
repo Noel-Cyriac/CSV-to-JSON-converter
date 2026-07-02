@@ -10,3 +10,5 @@ Company_Sales_and_Performance_Data.csv,SUCCESS,Converted successfully,2026-06-25
 invalid1.csv,FAILED,Malformed row at record 2: Column count (2) does not match header count (3).,2026-06-29T13:55:19.59488274
 invalid1.csv,FAILED,Failed on retry: Malformed row at record 2: Column count (2) does not match header count (3).,2026-06-29T13:56:23.692554041
 invalid1.csv,SUCCESS,Converted successfully on retry (attempt 3),2026-06-29T13:57:57.003155021
+invalid.csv,FAILED,Failed on retry: Malformed row at record 2: Column count (2) does not match header count (3).,2026-07-02T12:28:36.255267316
+invalid.csv,FAILED,Failed on retry: Malformed row at record 2: Column count (2) does not match header count (3).,2026-07-02T12:28:56.590050306

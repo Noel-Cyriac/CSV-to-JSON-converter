@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.example.csvjson"},{"l":"com.example.csvjson.config"},{"l":"com.example.csvjson.model"},{"l":"com.example.csvjson.processor"},{"l":"com.example.csvjson.service"},{"l":"com.example.csvjson.util"}];updateSearchResults();

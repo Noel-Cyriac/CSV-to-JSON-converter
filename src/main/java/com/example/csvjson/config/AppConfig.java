@@ -21,7 +21,6 @@ public class AppConfig {
     private File failedDir;
     private File logsDir;
     private File metadataDir;
-    private int maxRetries = 3;
 
     public AppConfig() {
         loadProperties();
@@ -51,12 +50,6 @@ public class AppConfig {
         logsDir = new File(properties.getProperty("dir.logs", "logs"));
         metadataDir = new File(properties.getProperty("dir.metadata", "metadata"));
 
-        try {
-            maxRetries = Integer.parseInt(properties.getProperty("max.retries", "3"));
-        } catch (NumberFormatException e) {
-            System.err.println("Warning: Invalid max.retries value. Defaulting to 3.");
-            maxRetries = 3;
-        }
     }
 
     /**
@@ -100,7 +93,4 @@ public class AppConfig {
         return metadataDir;
     }
 
-    public int getMaxRetries() {
-        return maxRetries;
-    }
 }

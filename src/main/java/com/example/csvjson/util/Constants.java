@@ -18,7 +18,6 @@ public final class Constants {
     // Execution states
     public static final String STATUS_SUCCESS = "SUCCESS";
     public static final String STATUS_FAILED = "FAILED";
-    public static final String STATUS_PERMANENT_FAILURE = "PERMANENT_FAILURE";
 
     // File extensions
     public static final String CSV_EXTENSION = ".csv";

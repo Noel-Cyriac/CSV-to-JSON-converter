@@ -163,3 +163,13 @@ INFO Application Finished
 INFO Application Started
 INFO Found 0 CSV files
 INFO Application Finished
+INFO Retry execution started
+INFO Found 1 failed CSV files for retry
+INFO Retrying invalid.csv (attempt 4)
+SEVERE invalid.csv failed on retry attempt 4
+INFO Application Finished
+INFO Retry execution started
+INFO Found 1 failed CSV files for retry
+INFO Retrying invalid.csv (attempt 5)
+SEVERE invalid.csv failed on retry attempt 5
+INFO Application Finished
