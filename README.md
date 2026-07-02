@@ -91,7 +91,7 @@ java -jar target/csv-json-converter-1.0.0.jar --retryFailed
 ```
 This is suitable for running via a cron job at designated intervals, e.g., every 2 hours:
 ```text
-0 */2 * * * java -jar /path/to/csv-json-converter-1.0.0.jar --retryFailed
+0 */2 * * * java -jar /path/to/csv-json-converter-1.0.0.jar
 ```
 
 ---
